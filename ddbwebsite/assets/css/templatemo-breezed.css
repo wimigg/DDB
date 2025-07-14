@@ -656,10 +656,6 @@ header
 
 /* 手機版面定義如下 */
 @media (max-width: 767px) {
-  .header-area .main-nav .logo {
-    /* 這個規則可能會影響 LOGO 圖片旁邊的文字，我們將其改為白色 */
-    color: #FFFFFF !important; /* 確保 LOGO 文字是白色 */
-  }
   .header-area.header-sticky .nav li a:hover,
   .header-area.header-sticky .nav li a.active {
     color: #5fb759!important;
@@ -670,60 +666,132 @@ header
   }
   .header-area {
     background-color: #1A2F4B !important; /* 將背景色改為深藍色 */
-    padding: 0px 15px;
-    height: 80px;
+    padding: 0px 15px; /* 根據需要調整左右內邊距 */
+    height: auto !important; /* 自動調整高度以適應內容 */
+    min-height: 80px; /* 設置最小高度 */
     box-shadow: none;
-    text-align: center;
+    text-align: center; /* 讓內容水平居中，如果沒有浮動元素 */
+    display: flex; /* 使用 flexbox 佈局主 header 區域 */
+    align-items: center; /* 垂直居中對齊內容 */
+    justify-content: space-between; /* 讓 LOGO 靠左，漢堡菜單靠右 */
   }
   .header-area .container {
     padding: 0px;
+    width: 100%; /* 確保容器佔滿寬度 */
   }
-  .header-area .logo {
-    /* 這個選擇器可能影響 LOGO 圖片本身或包含它的父元素，確保不衝突 */
-    /* 這裡不需要改變，讓圖片正常顯示 */
-    margin-left: 30px;
+
+  /* 針對 LOGO 的外層容器 a 標籤 */
+  .header-area .main-nav a.d-flex {
+    display: flex !important; /* 重新啟用 flexbox，但將其對齊方式調整 */
+    align-items: center; /* 垂直居中對齊 LOGO 圖片和文字 */
+    flex-grow: 1; /* 讓它盡可能佔據空間 */
+    justify-content: flex-start; /* LOGO 和文字靠左對齊 */
+    padding-top: 5px; /* 減少頂部間距 */
+    padding-bottom: 5px; /* 減少底部間距 */
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    max-width: calc(100% - 80px); /* 限制 LOGO 區域最大寬度，為漢堡選單留空間 */
+    text-align: left; /* 確保文字在 flex 容器內靠左 */
   }
-  .header-area .menu-trigger {
+
+  /* 針對 LOGO 圖片 */
+  .header-area .main-nav a.d-flex img {
+    max-height: 50px !important; /* 限制圖片高度，可根據需求調整 */
+    width: auto !important;
+    margin-right: 8px !important; /* 圖片和文字之間留一些間距 */
+    margin-left: 0px !important; /* 確保靠左 */
+    display: block; /* 確保是塊級元素 */
+  }
+
+  /* 針對 LOGO 文字的 div 容器 */
+  .header-area .main-nav a.d-flex div {
+    text-align: left; /* 確保文字靠左 */
+    /* 調整字體大小以適應手機屏幕 */
+    font-size: 0.7em; /* 相對縮小字體 */
+    line-height: 1.2; /* 調整行高 */
+    white-space: nowrap; /* 防止文字換行 */
+    overflow: hidden; /* 超出部分隱藏 */
+    text-overflow: ellipsis; /* 超出部分顯示省略號 */
+  }
+
+  /* 針對 LOGO 文字的第一行（點典亮軟體客製化市集） */
+  .header-area .main-nav a .d-flex span:first-child {
+      color: #FFFFFF !important;
+      font-size: 1.1em !important; /* 相對縮小，可根據需求調整 */
+      display: block; /* 確保獨佔一行 */
+  }
+  /* 針對 LOGO 文字的第二行（DDBright Software Customization Market） */
+  .header-area .main-nav a .d-flex span:last-child {
+      color: #D3D3D3 !important;
+      font-size: 0.8em !important; /* 相對縮小，可根據需求調整 */
+      display: block; /* 確保獨佔一行 */
+  }
+
+  /* 漢堡選單觸發器 */
+  .header-area .main-nav .menu-trigger {
     display: block !important;
-    /* 確保漢堡選單符號本身是白色 */
-    color: #FFFFFF !important; /* 將漢堡選單的整體顏色改為白色 */
+    position: relative; /* 確保相對於父元素定位 */
+    top: auto; /* 移除絕對定位的 top 屬性 */
+    right: auto; /* 移除絕對定位的 right 屬性 */
+    margin-left: auto; /* 推到最右邊 */
+    flex-shrink: 0; /* 防止被壓縮 */
   }
-  .header-area .main-nav {
-    overflow: hidden;
+
+  /* 確保漢堡選單（以及展開後的 X 符號）的顏色正確 */
+  .header-area .main-nav .menu-trigger span,
+  .header-area .main-nav .menu-trigger span::before,
+  .header-area .main-nav .menu-trigger span::after {
+    background-color: #FFFFFF !important;
   }
+  .header-area .main-nav .menu-trigger.active span::before,
+  .header-area .main-nav .menu-trigger.active span::after {
+    background-color: #FFFFFF !important;
+  }
+  .header-area .main-nav .menu-trigger.active span {
+    background-color: transparent !important;
+  }
+  
+  /* 手機版菜單導航樣式 */
   .header-area .main-nav .nav {
     float: none;
     width: 100%;
-    display: none;
+    display: none; /* 預設隱藏 */
     -webkit-transition: all 0s ease 0s;
     -moz-transition: all 0s ease 0s;
     -o-transition: all 0s ease 0s;
     transition: all 0s ease 0s;
     margin-left: 0px;
+    position: absolute; /* 絕對定位到 header 下方 */
+    top: 100%; /* 位於 header 的正下方 */
+    left: 0;
+    background-color: #1A2F4B; /* 菜單背景色與 header 一致 */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2); /* 添加陰影 */
   }
   .header-area .main-nav .nav li:first-child {
-    border-top: 1px solid #eee;
+    border-top: 1px solid #3B566E; /* 調整邊框顏色 */
   }
   .header-area.header-sticky .nav {
-    margin-top: 80px !important;
+    margin-top: 0px !important; /* 當 header sticky 時，確保菜單緊貼 header */
+    top: 80px; /* 由於 header 高度變為80px，這裡也調整 */
   }
   .header-area .main-nav .nav li {
     width: 100%;
-    background: #fff;
-    border-bottom: 1px solid #eee;
+    background: #1A2F4B; /* 菜單項背景色與菜單背景色一致 */
+    border-bottom: 1px solid #3B566E; /* 調整邊框顏色 */
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
   .header-area .main-nav .nav li a {
     height: 50px !important;
     line-height: 50px !important;
-    padding: 0px !important;
+    padding: 0px 20px !important; /* 為菜單項添加左右內邊距 */
     border: none !important;
-    background: #f7f7f7 !important;
-    color: #191a20 !important;
+    background: transparent !important; /* 菜單項背景透明 */
+    color: #FFFFFF !important; /* 菜單項文字顏色 */
+    text-align: left; /* 菜單項文字靠左 */
   }
   .header-area .main-nav .nav li a:hover {
-    background: #eee !important;
+    background: rgba(255,255,255,0.1) !important; /* hover 時淺色背景 */
     color: #5fb759!important;
   }
   .header-area .main-nav .nav li.submenu ul {
@@ -737,10 +805,12 @@ header
     width: 100%;
     box-shadow: none;
     height: 0px;
+    background: rgba(0,0,0,0.1); /* 子菜單背景色略深 */
   }
   .header-area .main-nav .nav li.submenu ul li a {
     font-size: 12px;
     font-weight: 400;
+    padding-left: 40px !important; /* 子菜單項縮進 */
   }
   .header-area .main-nav .nav li.submenu ul li a:hover:before {
     width: 0px;
@@ -749,7 +819,7 @@ header
     height: auto !important;
   }
   .header-area .main-nav .nav li.submenu:after {
-    color: #3B566E;
+    color: #FFFFFF; /* 子菜單箭頭顏色為白色 */
     right: 25px;
     font-size: 14px;
     top: 15px;
@@ -757,40 +827,6 @@ header
   .header-area .main-nav .nav li.submenu:hover ul, .header-area .main-nav .nav li.submenu:focus ul {
     height: 0px;
   }
-
-  /* ****** 新增/修改以下規則來確保 LOGO 文字和漢堡/X 符號為白色 ****** */
-
-  /* 針對 LOGO 文字：點典亮資訊 和 GraBright Info */
-  /* 因為 HTML 中有行內樣式，這裡使用 !important 來覆蓋 */
-  .header-area .main-nav a .d-flex span:first-child {
-      color: #FFFFFF !important; /* 確保 "點典亮資訊" 是白色 */
-  }
-  .header-area .main-nav a .d-flex span:last-child {
-      color: #D3D3D3 !important; /* 確保 "GraBright Info" 是淺灰色 */
-  }
-
-  /* 針對漢堡選單的三條線 (當它未展開時) */
-  .header-area .main-nav .menu-trigger span {
-    background-color: #FFFFFF !important; /* 中間線條顏色改為白色 */
-  }
-  .header-area .main-nav .menu-trigger span::before,
-  .header-area .main-nav .menu-trigger span::after {
-    background-color: #FFFFFF !important; /* 上下兩條線的顏色改為白色 */
-  }
-
-  /* 針對 X 符號的兩條線 (當菜單展開時) */
-  /* 根據您提供的新程式碼，這裡的背景色原本是 #1e1e1e，現在我們改成白色 */
-  .header-area .main-nav .menu-trigger.active span::before {
-    background-color: #FFFFFF !important; /* 將 X 符號的第一條線改為白色 */
-  }
-  .header-area .main-nav .menu-trigger.active span::after {
-    background-color: #FFFFFF !important; /* 將 X 符號的第二條線改為白色 */
-  }
-  /* 確保 X 符號中間的 span 在 active 狀態下是透明的 */
-  .header-area .main-nav .menu-trigger.active span {
-    background-color: transparent !important;
-  }
-
 }
 
 @media (min-width: 767px) {
@@ -798,6 +834,8 @@ header
     display: flex !important;
   }
 }
+
+
 
 
 /* 
