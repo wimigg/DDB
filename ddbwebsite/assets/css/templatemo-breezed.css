@@ -656,6 +656,10 @@ header
 
 /* 手機版面定義如下 */
 @media (max-width: 767px) {
+  .header-area .main-nav .logo {
+    /* 這個規則可能會影響 LOGO 圖片旁邊的文字，我們將其改為白色 */
+    color: #FFFFFF !important; /* 確保 LOGO 文字是白色 */
+  }
   .header-area.header-sticky .nav li a:hover,
   .header-area.header-sticky .nav li a.active {
     color: #5fb759!important;
@@ -666,132 +670,137 @@ header
   }
   .header-area {
     background-color: #1A2F4B !important; /* 將背景色改為深藍色 */
-    padding: 0px 15px; /* 根據需要調整左右內邊距 */
-    height: auto !important; /* 自動調整高度以適應內容 */
-    min-height: 80px; /* 設置最小高度 */
+    padding: 0px 15px;
+    height: 80px;
     box-shadow: none;
-    text-align: center; /* 讓內容水平居中，如果沒有浮動元素 */
-    display: flex; /* 使用 flexbox 佈局主 header 區域 */
-    align-items: center; /* 垂直居中對齊內容 */
-    justify-content: space-between; /* 讓 LOGO 靠左，漢堡菜單靠右 */
+    text-align: center;
   }
   .header-area .container {
     padding: 0px;
-    width: 100%; /* 確保容器佔滿寬度 */
+  }
+  /* 修改：調整 Logo 容器的寬度和浮動，為漢堡選單騰出空間 */
+  .header-area .main-nav a.d-flex { /* 針對整個 Logo + 文字的 a 標籤 */
+    width: calc(100% - 70px) !important; /* **調整：從100px改為70px，讓Logo區域更緊湊，為漢堡選單留出更多空間** */
+    float: left !important; /* 讓 Logo 靠左浮動 */
+    justify-content: flex-start !important; /* 讓內部內容靠左對齊 */
+    padding-left: 0px !important; /* 移除左側多餘內邊距，或根據需要保留小量 */
+    margin-right: 0 !important;
   }
 
-  /* 針對 LOGO 的外層容器 a 標籤 */
-  .header-area .main-nav a.d-flex {
-    display: flex !important; /* 重新啟用 flexbox，但將其對齊方式調整 */
-    align-items: center; /* 垂直居中對齊 LOGO 圖片和文字 */
-    flex-grow: 1; /* 讓它盡可能佔據空間 */
-    justify-content: flex-start; /* LOGO 和文字靠左對齊 */
-    padding-top: 5px; /* 減少頂部間距 */
-    padding-bottom: 5px; /* 減少底部間距 */
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-    max-width: calc(100% - 80px); /* 限制 LOGO 區域最大寬度，為漢堡選單留空間 */
-    text-align: left; /* 確保文字在 flex 容器內靠左 */
-  }
-
-  /* 針對 LOGO 圖片 */
+  /* 修改：調整 Logo 圖片的大小 */
   .header-area .main-nav a.d-flex img {
-    max-height: 50px !important; /* 限制圖片高度，可根據需求調整 */
+    height: 50px !important; /* **調整：從60px改為50px，進一步縮小圖片高度** */
     width: auto !important;
-    margin-right: 8px !important; /* 圖片和文字之間留一些間距 */
-    margin-left: 0px !important; /* 確保靠左 */
-    display: block; /* 確保是塊級元素 */
+    margin-right: 10px !important; /* **調整：從15px改為10px**，調整與文字的間距，使其不過於分散 */
   }
 
-  /* 針對 LOGO 文字的 div 容器 */
+  /* 修改：調整 Logo 文字的字體大小，使其能在一行內顯示 */
+  .header-area .main-nav a.d-flex span:first-child {
+      font-size: 100% !important; /* **調整：從110%改為100%**，確保主標題更小巧 */
+      white-space: nowrap !important; /* 防止文字換行 */
+      line-height: 1.2 !important; /* 調整行高以適應縮小後的文字 */
+  }
+  .header-area .main-nav a.d-flex span:last-child {
+      font-size: 80% !important; /* **調整：從90%改為80%**，確保副標題更小巧 */
+      white-space: nowrap !important; /* 防止文字換行 */
+      line-height: 1.2 !important; /* 調整行高 */
+  }
+  /* 確保 div 容器（包含兩個 span）垂直居中於 logo 圖片旁 */
   .header-area .main-nav a.d-flex div {
-    text-align: left; /* 確保文字靠左 */
-    /* 調整字體大小以適應手機屏幕 */
-    font-size: 0.7em; /* 相對縮小字體 */
-    line-height: 1.2; /* 調整行高 */
-    white-space: nowrap; /* 防止文字換行 */
-    overflow: hidden; /* 超出部分隱藏 */
-    text-overflow: ellipsis; /* 超出部分顯示省略號 */
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      height: 80px !important; /* 與 header-area height 匹配，幫助垂直居中 */
+      padding-left: 0px !important; /* 讓 Logo 文字更靠左邊緣 */
   }
 
-  /* 針對 LOGO 文字的第一行（點典亮軟體客製化市集） */
-  .header-area .main-nav a .d-flex span:first-child {
-      color: #FFFFFF !important;
-      font-size: 1.1em !important; /* 相對縮小，可根據需求調整 */
-      display: block; /* 確保獨佔一行 */
-  }
-  /* 針對 LOGO 文字的第二行（DDBright Software Customization Market） */
-  .header-area .main-nav a .d-flex span:last-child {
-      color: #D3D3D3 !important;
-      font-size: 0.8em !important; /* 相對縮小，可根據需求調整 */
-      display: block; /* 確保獨佔一行 */
-  }
 
-  /* 漢堡選單觸發器 */
-  .header-area .main-nav .menu-trigger {
+  .header-area .logo {
+    /* 這個選擇器可能影響 LOGO 圖片本身或包含它的父元素，確保不衝突 */
+    /* 這裡不需要改變，讓圖片正常顯示 */
+    margin-left: 0px !important; /* 移除這個 margin-left，讓 Logo 更靠左 */
+  }
+  /* 修改：調整漢堡選單的位置，使其可見 */
+  .header-area .menu-trigger {
     display: block !important;
-    position: relative; /* 確保相對於父元素定位 */
-    top: auto; /* 移除絕對定位的 top 屬性 */
-    right: auto; /* 移除絕對定位的 right 屬性 */
-    margin-left: auto; /* 推到最右邊 */
-    flex-shrink: 0; /* 防止被壓縮 */
+    top: 20px !important; /* 調整垂直位置，使其在 Header 內居中 */
+    right: 0px !important; /* **調整：從5px改為0px**，讓漢堡選單完全靠右 */
+    width: 60px !important; /* **調整：從40px改為60px**，增加觸摸區域並確保內部圖標有空間 */
+    height: 40px !important; /* 增加觸摸區域 */
+    text-align: center !important;
+    line-height: 40px !important;
+    padding: 0 !important;
+    /* 確保漢堡選單符號本身是白色 */
+    color: #FFFFFF !important; /* 將漢堡選單的整體顏色改為白色 */
+  }
+  /* 調整漢堡選單三條線條的相對位置，使其在新的 `menu-trigger` 容器中居中 */
+  .header-area .main-nav .menu-trigger span {
+      top: 19px !important; /* 相對於 menu-trigger 容器的垂直中心 */
+      left: 15px !important; /* **調整：從15px改為15px，確保在60px寬度內居中** */
+  }
+  .header-area .main-nav .menu-trigger span:before {
+      top: -8px !important; /* 相對於 span 的垂直位置 */
+      left: 0 !important;
+  }
+  .header-area .main-nav .menu-trigger span:after {
+      top: 8px !important; /* 相對於 span 的垂直位置 */
+      left: 0 !important;
   }
 
-  /* 確保漢堡選單（以及展開後的 X 符號）的顏色正確 */
+  /* 漢堡選單的三條線和 X 符號顏色 */
   .header-area .main-nav .menu-trigger span,
   .header-area .main-nav .menu-trigger span::before,
-  .header-area .main-nav .menu-trigger span::after {
-    background-color: #FFFFFF !important;
-  }
+  .header-area .main-nav .menu-trigger span::after,
   .header-area .main-nav .menu-trigger.active span::before,
   .header-area .main-nav .menu-trigger.active span::after {
-    background-color: #FFFFFF !important;
+    background-color: #FFFFFF !important; /* 確保所有相關線條都是白色 */
   }
   .header-area .main-nav .menu-trigger.active span {
-    background-color: transparent !important;
+    background-color: transparent !important; /* X 符號中間的線透明 */
   }
-  
-  /* 手機版菜單導航樣式 */
+
+
+  .header-area .main-nav {
+    overflow: hidden;
+  }
   .header-area .main-nav .nav {
     float: none;
     width: 100%;
-    display: none; /* 預設隱藏 */
+    display: none;
     -webkit-transition: all 0s ease 0s;
     -moz-transition: all 0s ease 0s;
     -o-transition: all 0s ease 0s;
     transition: all 0s ease 0s;
     margin-left: 0px;
-    position: absolute; /* 絕對定位到 header 下方 */
-    top: 100%; /* 位於 header 的正下方 */
-    left: 0;
-    background-color: #1A2F4B; /* 菜單背景色與 header 一致 */
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2); /* 添加陰影 */
   }
+  /* 選單項目置中 */
   .header-area .main-nav .nav li:first-child {
-    border-top: 1px solid #3B566E; /* 調整邊框顏色 */
+    border-top: 1px solid #eee;
   }
   .header-area.header-sticky .nav {
-    margin-top: 0px !important; /* 當 header sticky 時，確保菜單緊貼 header */
-    top: 80px; /* 由於 header 高度變為80px，這裡也調整 */
+    margin-top: 80px !important;
   }
   .header-area .main-nav .nav li {
     width: 100%;
-    background: #1A2F4B; /* 菜單項背景色與菜單背景色一致 */
-    border-bottom: 1px solid #3B566E; /* 調整邊框顏色 */
+    background: #fff;
+    border-bottom: 1px solid #eee;
     padding-left: 0px !important;
     padding-right: 0px !important;
+    text-align: center; /* 讓列表項文字置中 */
   }
   .header-area .main-nav .nav li a {
     height: 50px !important;
     line-height: 50px !important;
-    padding: 0px 20px !important; /* 為菜單項添加左右內邊距 */
+    padding: 0px !important;
     border: none !important;
-    background: transparent !important; /* 菜單項背景透明 */
-    color: #FFFFFF !important; /* 菜單項文字顏色 */
-    text-align: left; /* 菜單項文字靠左 */
+    background: #f7f7f7 !important;
+    color: #191a20 !important;
+    display: flex; /* 啟用 flexbox */
+    justify-content: center; /* 使內容水平居中 */
+    align-items: center; /* 使內容垂直居中 */
   }
   .header-area .main-nav .nav li a:hover {
-    background: rgba(255,255,255,0.1) !important; /* hover 時淺色背景 */
+    background: #eee !important;
     color: #5fb759!important;
   }
   .header-area .main-nav .nav li.submenu ul {
@@ -805,12 +814,10 @@ header
     width: 100%;
     box-shadow: none;
     height: 0px;
-    background: rgba(0,0,0,0.1); /* 子菜單背景色略深 */
   }
   .header-area .main-nav .nav li.submenu ul li a {
     font-size: 12px;
     font-weight: 400;
-    padding-left: 40px !important; /* 子菜單項縮進 */
   }
   .header-area .main-nav .nav li.submenu ul li a:hover:before {
     width: 0px;
@@ -819,7 +826,7 @@ header
     height: auto !important;
   }
   .header-area .main-nav .nav li.submenu:after {
-    color: #FFFFFF; /* 子菜單箭頭顏色為白色 */
+    color: #3B566E;
     right: 25px;
     font-size: 14px;
     top: 15px;
@@ -834,8 +841,6 @@ header
     display: flex !important;
   }
 }
-
-
 
 
 /* 
