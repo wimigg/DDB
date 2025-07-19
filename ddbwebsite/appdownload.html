@@ -26,9 +26,10 @@
         }
         /* Fix for overlapping text and header in main-banner */
         .main-banner.header-text .text-content {
-            padding-top: 180px; /* 從100px增加到180px，可以再試試其他值 */
-            color: #ffffff; /* Ensure text is white */
-        }
+			padding-top: 180px; /* 根據圖片和選單的實際高度調整此值，確保不重疊 */
+			padding-bottom: 50px; /* 增加底部間距，讓內容有足夠空間 */
+			color: #ffffff; /* Ensure text is white */
+		}
         .main-banner.header-text .text-content h4,
         .main-banner.header-text .text-content h6 {
             color: #ffffff !important; /* Force white color for titles */
@@ -81,7 +82,7 @@
             left: 0;
             color: #28a745; /* Green checkmark */
         }
-        .function-architecture-img {
+        .function-architecture-img { /* Original image style, now removed from HTML */
             max-width: 100%;
             height: auto;
             display: block;
@@ -94,6 +95,63 @@
         #app-download-section .section-heading h6,
         #app-download-section .section-heading h2 {
             color: #fff;
+        }
+        
+        /* Styles for the new concept animation */
+        .concept-flow-container {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #4a6078; /* Slightly lighter than body background */
+            border-radius: 10px;
+            margin-top: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            color: #fff;
+        }
+        .concept-inputs, .concept-outputs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .concept-item {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 10px 20px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            background-color: #5fb759; /* Green from template */
+            color: #fff;
+            opacity: 0; /* Hidden by default for animation */
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            transform: translateY(20px);
+        }
+        .concept-arrow {
+            font-size: 3em;
+            color: #fff;
+            margin: 0 20px;
+            transform: scaleX(0); /* Hidden by default for animation */
+            transition: transform 0.8s ease-in-out;
+        }
+        .concept-output-item {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin: 10px 20px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            background-color: #007bff; /* Blue from Bootstrap */
+            color: #fff;
+            opacity: 0; /* Hidden by default for animation */
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            transform: translateY(20px);
+        }
+        .concept-item.show, .concept-arrow.show, .concept-output-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .concept-description {
+            font-size: 1.1em;
+            color: #d3d3d3;
+            margin-top: 20px;
         }
     </style>
 
@@ -139,7 +197,7 @@
                                 <a href="javascript:;" style="font-size: 150%;">語言 Language</a>
                                 <ul>
                                     <li><a href="./index.html" style="font-size: 150%;">繁體中文</a></li>
-                                    <li><a href="./en/index.html" style="font-size: 150%;">English</a></li>
+                                    <li><a href="./english/index.html" style="font-size: 150%;">English</a></li>
                                 </ul>
                             </li>
                             <div class="search-icon">
@@ -155,8 +213,9 @@
         </div>
     </header>
     <div class="main-banner header-text" id="top">
-        <div class="img-fill" style="background-image: url(assets/images/heading-bg.jpg); background-size: cover; background-position: center; height: 300px; display: flex; align-items: center; justify-content: center;">
+        <div class="img-fill" style="background-image: url(assets/images/heading-bg.jpg); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center;">
             <div class="text-content" style="text-align: center;">
+				
                 <h4 style="font-size: 2.5em; font-weight: bold; margin-bottom: 10px;">自研APP下載</h4>
                 <h6 style="font-size: 1.2em; opacity: 0.8;">開啟智慧健康生活，從這裡開始！</h6>
             </div>
@@ -196,9 +255,39 @@
                 <div class="col-lg-12">
                     <div class="section-heading">
                         <h6>APP 核心設計</h6>
-                        <h2>功能架構一覽</h2>
+                        <h2>功能概念與效益</h2>
                     </div>
-                    <img src="image_418435.png" alt="APP 功能架構圖" class="function-architecture-img">
+                    <div class="concept-flow-container">
+                        <h3 style="color: #fff; margin-bottom: 30px;">HealthPilotAI 熱玩 功能一覽</h3>
+                        
+                        <div class="concept-inputs">
+                            <span class="concept-item" data-delay="0">
+                                สุขภาพ<br>評估師 📊
+                            </span>
+                            <span class="concept-item" data-delay="0.3">
+                                體重<br>監督師 ⚖️
+                            </span>
+                            <span class="concept-item" data-delay="0.6">
+                                運動<br>管理師 🏃‍♀️
+                            </span>
+                        </div>
+                        
+                        <div class="concept-arrow" data-delay="0.9">➡️</div>
+                        
+                        <div class="concept-outputs">
+                            <span class="concept-output-item" data-delay="1.2">
+                                專屬的報表 📈
+                            </span>
+                            <span class="concept-output-item" data-delay="1.5">
+                                專屬的推播提醒 🔔
+                            </span>
+                        </div>
+                        
+                        <p class="concept-description" style="color: #d3d3d3; margin-top: 30px;">
+                            HealthPilotAI 熱玩 將專業知識轉化為您的個人化健康助手，<br>
+                            從多維度數據分析，為您提供精準的健康管理與實時建議。
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -259,9 +348,69 @@
     <script src="assets/js/imgfix.min.js"></script> 
     <script src="assets/js/slick.js"></script> 
     <script src="assets/js/lightbox.js"></script> 
+    
     <script src="assets/js/isotope.js"></script> 
     
     <script src="assets/js/custom.js"></script>
+
+    <script>
+        // JS for the new concept animation
+        $(document).ready(function() {
+            function animateConceptFlow() {
+                const $inputs = $('.concept-inputs .concept-item');
+                const $arrow = $('.concept-arrow');
+                const $outputs = $('.concept-outputs .concept-output-item');
+                const totalDuration = 2000; // Total animation duration for one cycle
+
+                // Reset all to hidden
+                $inputs.removeClass('show');
+                $arrow.removeClass('show');
+                $outputs.removeClass('show');
+
+                // Animate inputs
+                $inputs.each(function(index) {
+                    const delay = $(this).data('delay') * 1000;
+                    setTimeout(() => {
+                        $(this).addClass('show');
+                    }, delay);
+                });
+
+                // Animate arrow
+                setTimeout(() => {
+                    $arrow.addClass('show');
+                }, 900); // After inputs are somewhat visible
+
+                // Animate outputs
+                $outputs.each(function(index) {
+                    const delay = $(this).data('delay') * 1000;
+                    setTimeout(() => {
+                        $(this).addClass('show');
+                    }, delay);
+                });
+
+                // Loop the animation (fade out and restart)
+                setTimeout(() => {
+                    $('.concept-flow-container .concept-item, .concept-flow-container .concept-arrow, .concept-flow-container .concept-output-item').removeClass('show');
+                    setTimeout(animateConceptFlow, 500); // Wait a bit before restarting
+                }, totalDuration);
+            }
+
+            // Start animation when section is in view
+            // You might need waypoints.js for this, which is already in your assets/js
+            if (typeof $.fn.waypoint === 'function') {
+                $('.concept-flow-container').waypoint(function(direction) {
+                    if (direction === 'down') {
+                        animateConceptFlow();
+                    }
+                }, {
+                    offset: 'bottom-in-view' // Trigger when the bottom of the element enters the viewport
+                });
+            } else {
+                // Fallback if waypoints.js is not correctly loaded or not preferred
+                animateConceptFlow();
+            }
+        });
+    </script>
 
   </body>
 </html>
