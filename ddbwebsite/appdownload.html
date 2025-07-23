@@ -234,7 +234,8 @@
                 <div class="col-lg-4 col-md-4 col-sm-12 qr-code-item">
                     <div class="icon-wrapper"><i class="fa fa-comment"></i></div>
                     <h4>LINE 官方帳號</h4>
-                    <img src="assets/images/qr_line_placeholder.png" alt="LINE 官方帳號 QR Code">
+                    <img src="assets/images/LINEat_qrcode.png" alt="LINE 官方帳號 QR Code">
+					<a href="https://lin.ee/vhxkekU"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友" height="36" border="0"></a>
                     <p>加入LINE好友，獲取最新資訊與專屬服務。</p>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 qr-code-item">
@@ -262,7 +263,7 @@
                         
                         <div class="concept-inputs">
                             <span class="concept-item" data-delay="0">
-                                สุขภาพ<br>評估師 📊
+                                健康<br>評估師 📊
                             </span>
                             <span class="concept-item" data-delay="0.3">
                                 體重<br>監督師 ⚖️
@@ -360,7 +361,7 @@
                 const $inputs = $('.concept-inputs .concept-item');
                 const $arrow = $('.concept-arrow');
                 const $outputs = $('.concept-outputs .concept-output-item');
-                const totalDuration = 2000; // Total animation duration for one cycle
+                const totalDuration = 4000; // Total animation duration for one cycle
 
                 // Reset all to hidden
                 $inputs.removeClass('show');
@@ -369,7 +370,7 @@
 
                 // Animate inputs
                 $inputs.each(function(index) {
-                    const delay = $(this).data('delay') * 1000;
+                    const delay = $(this).data('delay') * 2000;
                     setTimeout(() => {
                         $(this).addClass('show');
                     }, delay);
@@ -382,7 +383,7 @@
 
                 // Animate outputs
                 $outputs.each(function(index) {
-                    const delay = $(this).data('delay') * 1000;
+                    const delay = $(this).data('delay') * 2000;
                     setTimeout(() => {
                         $(this).addClass('show');
                     }, delay);
